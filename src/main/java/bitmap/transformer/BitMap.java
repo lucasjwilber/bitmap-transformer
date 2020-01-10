@@ -11,11 +11,11 @@ public class BitMap {
         BufferedImage bmpImage = ImageIO.read(bmpFile);
         return bmpImage;
     }
-    private static BufferedImage changeColor( int width, int height ) throws IOException {
+    private static BufferedImage changeColor() throws IOException {
         final BufferedImage newImage = bitMapReader("C:\\Users\\lwilb\\codefellows\\java-401d7\\bitmap\\bitmap-transformer\\src\\main\\resources\\mario.bmp");
 
-        for (int x = 0; x < width; x++){
-            for (int y = 0; y < height; y++){
+        for (int x = 0; x < 100; x++){
+            for (int y = 0; y < 100; y++){
                 Color thisPixelColor = new Color(newImage.getRGB(x, y));
                 if (thisPixelColor.getRed() == 255 &&
                         thisPixelColor.getGreen() == 255 &&
@@ -37,7 +37,7 @@ public class BitMap {
         }
     }
     public static void main(String[] args) throws IOException {
-        BufferedImage img = changeColor( 100, 100 );
-        savePNG( img, "C:\\Users\\lwilb\\codefellows\\java-401d7\\bitmap\\bitmap-transformer\\src\\main\\resources\\mario2.bmp");
+        BufferedImage img = changeColor();
+        savePNG( img, "C:\\Users\\lwilb\\codefellows\\java-401d7\\bitmap\\bitmap-transformer\\src\\main\\resources\\mario3.bmp");
     }
 }
