@@ -3,8 +3,21 @@
  */
 package bitmap.transformer;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
+        String input = args[0];
+        BufferedImage img;
+
+        if (args[2] == "changeColor") {
+            img = BitMap.changeColor(input);
+            BitMap.saveFile( img, args[1]);
+        }
+
+
     }
 }
