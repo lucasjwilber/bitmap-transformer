@@ -38,15 +38,15 @@ public class BitMap {
                 } else if (thisPixelColor.getRed() <= 15 &&
                         thisPixelColor.getGreen() <= 15 &&
                         thisPixelColor.getBlue() <= 15) {
-                    newImage.setRGB(x, y, 255);
+                    newImage.setRGB(x, y, 16777215);
                 }
             }
         }
         return newImage;
     }
 
-    //this may only work with square images, haven't tested.
-    public static BufferedImage rotateClockwise(String path) throws IOException, ArrayIndexOutOfBoundsException {
+    //this may only work with square images
+    public static BufferedImage rotate(String path) throws IOException, ArrayIndexOutOfBoundsException {
         final BufferedImage oldImage = createBufferedImageFromBMP(path);
         BufferedImage newImage = createBufferedImageFromBMP(path);
 
@@ -57,6 +57,20 @@ public class BitMap {
             }
         }
         return newImage;
+    }
+
+    public static BufferedImage mirror(String path) throws IOException {
+        final BufferedImage image = createBufferedImageFromBMP(path);
+
+        for (int x = 0; x < image.getWidth() / 2; x++) {
+            for (int y = 0; y < image.getHeight(); y++) {
+                int thisPixelColor = image.getRGB(x, y);
+                int oppositePixelColor = image.getRGB(image.getWidth() - x - 1, y);
+                image.setRGB(x, y, oppositePixelColor);
+                image.setRGB(image.getWidth() - x - 1, y, thisPixelColor);
+            }
+        }
+        return image;
     }
 
 

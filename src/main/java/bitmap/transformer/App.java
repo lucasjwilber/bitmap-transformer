@@ -20,10 +20,13 @@ public class App {
                 img = BitMap.flipBlackAndWhite(input);
                 BitMap.saveBufferedImageAsBMP(img, output);
                 break;
-            case "rotateImage":
-                img = BitMap.rotateClockwise(input);
+            case "rotate":
+                img = BitMap.rotate(input);
                 BitMap.saveBufferedImageAsBMP(img, output);
                 break;
+            case "mirror":
+                img = BitMap.mirror(input);
+                BitMap.saveBufferedImageAsBMP(img, output);
             default:
                 System.out.println("The method provided is not supported");
         }
