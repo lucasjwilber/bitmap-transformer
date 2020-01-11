@@ -8,16 +8,24 @@ import java.io.IOException;
 
 public class App {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ArrayIndexOutOfBoundsException {
 
         String input = args[0];
+        String output = args[1];
+        String method = args[2];
         BufferedImage img;
 
-        if (args[2] == "changeColor") {
-            img = BitMap.changeColor(input);
-            BitMap.saveFile( img, args[1]);
+        switch (method) {
+            case "flipBlackAndWhite":
+                img = BitMap.flipBlackAndWhite(input);
+                BitMap.saveBufferedImageAsBMP(img, output);
+                break;
+            case "rotateImage":
+                img = BitMap.rotateClockwise(input);
+                BitMap.saveBufferedImageAsBMP(img, output);
+                break;
+            default:
+                System.out.println("The method provided is not supported");
         }
-
-
     }
 }
