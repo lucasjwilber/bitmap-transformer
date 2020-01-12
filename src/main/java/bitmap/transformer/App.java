@@ -15,9 +15,13 @@ public class App {
         String method = args[2];
         BufferedImage img;
 
+        if (method.contains("white")) method = "white-[newColor]";
+
         switch (method) {
-            case "flipBlackAndWhite":
-                img = BitMap.flipBlackAndWhite(input);
+            case "white-[newColor]":
+                int dash = args[2].indexOf('-');
+                String newColor = args[2].substring(dash + 1);
+                img = BitMap.swapWhiteWithNewColor(input, newColor);
                 BitMap.saveBufferedImageAsBMP(img, output);
                 break;
             case "rotate":

@@ -24,21 +24,40 @@ public class BitMap {
         }
     }
 
+    public static int colorGetter(String color) {
+        switch (color.toLowerCase()) {
+//            case "white":
+//                return 16777215;
+            case "red":
+                return 16711680;
+            case "orange":
+                return 16753920;
+            case "yellow":
+                return 16776960;
+            case "green":
+                return 65280;
+            case "blue":
+                return 255;
+            case "purple":
+                return 16711935;
+            case "black":
+            default:
+                return 0;
+        }
+    }
+
     //transforms:
-    public static BufferedImage flipBlackAndWhite(String path) throws IOException {
-        final BufferedImage newImage = createBufferedImageFromBMP(path);
+    public static BufferedImage swapWhiteWithNewColor(String path, String inputColor) throws IOException {
+        int newColor = colorGetter(inputColor);
+        BufferedImage newImage = createBufferedImageFromBMP(path);
 
         for (int x = 0; x < newImage.getWidth(); x++) {
             for (int y = 0; y < newImage.getHeight(); y++) {
                 Color thisPixelColor = new Color(newImage.getRGB(x, y));
-                if (thisPixelColor.getRed() >= 245 &&
-                        thisPixelColor.getGreen() >= 245 &&
-                        thisPixelColor.getBlue() >= 245) {
-                    newImage.setRGB(x, y, 0);
-                } else if (thisPixelColor.getRed() <= 15 &&
-                        thisPixelColor.getGreen() <= 15 &&
-                        thisPixelColor.getBlue() <= 15) {
-                    newImage.setRGB(x, y, 16777215);
+                if (thisPixelColor.getBlue() > 240 &&
+                    thisPixelColor.getRed() > 240 &&
+                    thisPixelColor.getGreen() > 240) {
+                    newImage.setRGB(x, y, newColor);
                 }
             }
         }
