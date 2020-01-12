@@ -4,10 +4,38 @@
 package bitmap.transformer;
 
 import org.junit.Test;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.Buffer;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void testAppHasAGreeting() {
 
-    }
+//    public static boolean compareBIs (BufferedImage source, BufferedImage input) throws IOException {
+////        BufferedImage sourceImage = ImageIO.read(new File(source));
+////        BufferedImage inputImage = ImageIO.read(new File(input));
+//        boolean pixelsAllMatch = true;
+//
+//        for (int x = 0; x < input.getWidth(); x++) {
+//            for (int y = 0; y < input.getHeight(); y++) {
+//                int sourcePixelColor = source.getRGB(x, y);
+//                int thisPixelColor = input.getRGB(x, y);
+//                if (thisPixelColor != sourcePixelColor) {
+//                    pixelsAllMatch = false;
+//                }
+//            }
+//        }
+//
+//        return pixelsAllMatch;
+//    }
+//
+//
+//    @Test public void testMirror() throws IOException {
+//        assertTrue(compareBIs(mario.bmp, BitMap.mirror("mario.bmp")));
+//    }
 }

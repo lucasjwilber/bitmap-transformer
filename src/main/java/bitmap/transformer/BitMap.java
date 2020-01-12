@@ -92,7 +92,7 @@ public class BitMap {
     }
 
     public static BufferedImage mirror(String path) throws IOException {
-        final BufferedImage image = createBufferedImageFromBMP(path);
+        BufferedImage image = createBufferedImageFromBMP(path);
         System.out.println("Found a .bmp image at " + path);
         System.out.println("Mirroring image...");
 
@@ -109,6 +109,7 @@ public class BitMap {
 
 
     public static void main(String[] args) {
+
         System.out.println("hi");
     }
 }
