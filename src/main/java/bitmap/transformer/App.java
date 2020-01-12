@@ -31,8 +31,9 @@ public class App {
             case "mirror":
                 img = BitMap.mirror(input);
                 BitMap.saveBufferedImageAsBMP(img, output);
+                break;
             default:
-                System.out.println("The method provided is not supported");
+                System.out.println("The transform you provided is not supported.");
         }
     }
 }

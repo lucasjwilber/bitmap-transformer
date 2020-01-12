@@ -18,7 +18,9 @@ public class BitMap {
 
     public static void saveBufferedImageAsBMP( final BufferedImage image, final String path ){
         try {
+            System.out.println("Saving new .bmp image...");
             ImageIO.write(image, "bmp", new File(path));
+            System.out.println("Successfully saved new .bmp image at " + path);
         } catch ( IOException e) {
             e.printStackTrace();
         }
@@ -26,8 +28,8 @@ public class BitMap {
 
     public static int colorGetter(String color) {
         switch (color.toLowerCase()) {
-//            case "white":
-//                return 16777215;
+            case "white":
+                return 16777215;
             case "red":
                 return 16711680;
             case "orange":
@@ -41,15 +43,24 @@ public class BitMap {
             case "purple":
                 return 16711935;
             case "black":
-            default:
                 return 0;
+            default:
+                return -1;
         }
     }
 
     //transforms:
     public static BufferedImage swapWhiteWithNewColor(String path, String inputColor) throws IOException {
-        int newColor = colorGetter(inputColor);
         BufferedImage newImage = createBufferedImageFromBMP(path);
+        System.out.println("Found a .bmp image at " + path);
+
+        int newColor = colorGetter(inputColor);
+        if (newColor == -1) {
+            System.out.println("The color you gave is not supported, sorry");
+            return newImage;
+        } else {
+            System.out.println("Replacing all whiteish colors with the color " + inputColor + "...");
+        }
 
         for (int x = 0; x < newImage.getWidth(); x++) {
             for (int y = 0; y < newImage.getHeight(); y++) {
@@ -67,8 +78,10 @@ public class BitMap {
     //this may only work with square images
     public static BufferedImage rotate(String path) throws IOException, ArrayIndexOutOfBoundsException {
         final BufferedImage oldImage = createBufferedImageFromBMP(path);
-        BufferedImage newImage = createBufferedImageFromBMP(path);
+        System.out.println("Found a .bmp image at " + path);
+        System.out.println("Rotating image clockwise...");
 
+        BufferedImage newImage = createBufferedImageFromBMP(path);
         for (int x = 0; x < oldImage.getWidth(); x++) {
             for (int y = 0; y < oldImage.getHeight(); y++) {
                 int thisPixelColor = oldImage.getRGB(x, y);
@@ -80,6 +93,8 @@ public class BitMap {
 
     public static BufferedImage mirror(String path) throws IOException {
         final BufferedImage image = createBufferedImageFromBMP(path);
+        System.out.println("Found a .bmp image at " + path);
+        System.out.println("Mirroring image...");
 
         for (int x = 0; x < image.getWidth() / 2; x++) {
             for (int y = 0; y < image.getHeight(); y++) {
