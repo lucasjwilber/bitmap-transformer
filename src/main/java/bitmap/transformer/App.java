@@ -15,17 +15,25 @@ public class App {
         String method = args[2];
         BufferedImage img;
 
+        if (method.contains("white")) method = "white-[newColor]";
+
         switch (method) {
-            case "flipBlackAndWhite":
-                img = BitMap.flipBlackAndWhite(input);
+            case "white-[newColor]":
+                int dash = args[2].indexOf('-');
+                String newColor = args[2].substring(dash + 1);
+                img = BitMap.swapWhiteWithNewColor(input, newColor);
                 BitMap.saveBufferedImageAsBMP(img, output);
                 break;
-            case "rotateImage":
-                img = BitMap.rotateClockwise(input);
+            case "rotate":
+                img = BitMap.rotate(input);
+                BitMap.saveBufferedImageAsBMP(img, output);
+                break;
+            case "mirror":
+                img = BitMap.mirror(input);
                 BitMap.saveBufferedImageAsBMP(img, output);
                 break;
             default:
-                System.out.println("The method provided is not supported");
+                System.out.println("The transform you provided is not supported.");
         }
     }
 }
